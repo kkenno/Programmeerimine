@@ -1,9 +1,14 @@
 import math
 
-print '{:^3}  {:6}  {:6}  {:6}'.format('e', 'x', 'x**2', 'isinf')
-print '{:-^3}  {:-^6}  {:-^6}  {:-^6}'.format('', '', '', '')
+print 'Degrees  Radians  Sine     Cosine    Tangent'
+print '-------  -------  -------  --------  -------'
 
-for e in range(0, 201, 20):
-    x = 10.0 ** e
-    y = x*x
-    print '{:3d}  {!s:6}  {!s:6}  {!s:6}'.format(e, x, y, math.isinf(y))
+fmt = '  '.join(['%7.2f'] * 5)
+
+for deg in range(0, 361, 30):
+    rad = math.radians(deg)
+    if deg in (90, 270):
+        t = float('inf')
+    else:
+        t = math.tan(rad)
+    print fmt % (deg, rad, math.sin(rad), math.cos(rad), t)
